@@ -9,23 +9,23 @@ import {
   Title,
 } from './ContactsList.styled';
 import { delContacts } from 'redux/operations';
-import { selectContacts } from 'redux/contactsSlice';
-import { selectFilter } from 'redux/filterSlice';
+import { selectContacts, selectFilteredContacts } from 'redux/contactsSlice';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const list = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
-
-  const contacts = list.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const contacts = useSelector(selectFilteredContacts);
 
   return (
     <>
       <HeadContacts>
         <Title>
-          Contacts<sup>{list.length}</sup>
+          Contacts
+          <sup>
+            {contacts.length === list.length
+              ? `${list.length}`
+              : `${contacts.length}/${list.length}`}
+          </sup>
         </Title>
         <Filter />
       </HeadContacts>
