@@ -3,14 +3,14 @@ import { Layout } from 'styles/Layout';
 import { ContactsEntry } from './ContactsEntry/ContactsEntry';
 import { ContactsList } from './ContactsList/ContactsList';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { Loader } from './Loader/Loader';
+import { fetchContacts } from 'redux/contacts/contacts.operations';
 import {
   selectContacts,
   selectError,
   selectIsLoading,
-} from 'redux/contactsSlice';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
-import { Loader } from './Loader/Loader';
+} from 'redux/contacts/contacts.selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
